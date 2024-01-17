@@ -3,4 +3,4 @@ fastapi~=0.108.0
 boto3~=1.34.15
 botocore~=1.34.15
 uvicorn
-pydantic_settings
+pydantic-settings

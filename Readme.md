@@ -16,21 +16,21 @@ create a simple REST API ordering system with FastAPI
 
 - Docker
 - [Localstack](https://github.com/localstack/localstack)
-- Python
+- Python 3.10+
 - npm
 - pip
 
 ### Setup
 
 ```bash
+# Install dependencies
+pip install -r requirements.txt
+
 # setup aws configuration see
 export AWS_ACCESS_KEY_ID=test
 export AWS_SECRET_ACCESS_KEY=test
 export AWS_ENDPOINT_URL=http://0.0.0.0:4566
 export AWS_REGION=us-east-1
-
-# Install dependencies
-pip install -r requirements.txt
 ```
 
 ### Create a dynamoDB table
@@ -42,13 +42,13 @@ npm install -g aws-cdk-local aws-cdk
 # CDK Boostrap and deploy
 cd ./aws/cdk-devops
 pip install -r requirements.txt
-cdk bootstrap
-cdk deploy
+cdklocal bootstrap
+cdklocal deploy
 ```
 
 ```bash
 # start the app
-uvicorn main.py
+uvicorn main:app --reload --port 8000
 ```
 
 ### cURL test
