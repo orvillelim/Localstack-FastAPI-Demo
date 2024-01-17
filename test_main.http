@@ -1,0 +1,28 @@
+# Test your FastAPI endpoints
+
+POST http://127.0.0.1:8000/api/orders/
+Content-Type: application/json
+
+{
+  "order_id": "123456789",
+  "product_name": "Sample Product",
+  "quantity": 2,
+  "price": 25.341,
+  "order_date": "2024-01-11T08:30:00",
+  "recipient": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "address": "123 Main St",
+    "phone_number": "+1234567890",
+    "email": "john.doe@example.com"
+  },
+  "billing_information": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "address": "123 Main St",
+    "phone_number": "+1234567890",
+    "email": "john.doe@example.com"
+  }
+}
+###
+
