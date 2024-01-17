@@ -1,6 +1,6 @@
 ### Overview
 
-This application was created for the purpose of experimenting with LocalStack, The inspiration was to
+This application was created for the purpose of experimenting with LocalStack, The inspiration is to
 create a simple REST API ordering system with FastAPI
 
 ### AWS services used with Localstack
@@ -27,7 +27,7 @@ create a simple REST API ordering system with FastAPI
 # Install dependencies
 pip install -r requirements.txt
 
-# setup aws configuration see
+# Setup aws configuration see
 export AWS_ACCESS_KEY_ID=test
 export AWS_SECRET_ACCESS_KEY=test
 export AWS_ENDPOINT_URL=http://0.0.0.0:4566
@@ -40,15 +40,16 @@ export AWS_REGION=us-east-1
 # Install CDK dependencies
 npm install -g aws-cdk-local aws-cdk
 
-# CDK Boostrap and deploy
+# CDK boostrap and deploy
 cd ./aws/cdk-devops
 pip install -r requirements.txt
 cdklocal bootstrap
 cdklocal deploy
 ```
 
+### Start App
 ```bash
-# start the app
+# Start the app
 uvicorn main:app --reload --port 8000
 ```
 
@@ -80,7 +81,7 @@ curl -X POST --location "http://127.0.0.1:8000/api/orders/" \
   }'
 ```
 
-### View Items:
+### View Items
 `aws dynamodb scan  --table-name OrderTable`
 
 ```json
