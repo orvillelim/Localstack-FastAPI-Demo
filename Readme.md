@@ -3,9 +3,9 @@
 This application was created for the purpose of experimenting with LocalStack, The inspiration was to
 create a simple REST API ordering system with FastAPI
 
-### AWS service used with Localstack
+### AWS services used with Localstack
 
-| Environment      | AWS                       |
+| Environment      | Services                  |
 |------------------|---------------------------|
 | **Services**     | DynamoDB, SES             |
 | **Integrations** | AWS SDK, AWS CLI, AWS CDK |
@@ -16,6 +16,7 @@ create a simple REST API ordering system with FastAPI
 
 - Docker
 - [Localstack](https://github.com/localstack/localstack)
+- [aws cli](https://aws.amazon.com/cli/)
 - Python 3.10+
 - npm
 - pip
@@ -33,7 +34,7 @@ export AWS_ENDPOINT_URL=http://0.0.0.0:4566
 export AWS_REGION=us-east-1
 ```
 
-### Create a dynamoDB table
+### Create a dynamoDB table using CDK
 
 ```bash
 # Install CDK dependencies
@@ -80,7 +81,7 @@ curl -X POST --location "http://127.0.0.1:8000/api/orders/" \
 ```
 
 ### View Items:
-`$ aws dynamodb scan  --table-name OrderTable`
+`aws dynamodb scan  --table-name OrderTable`
 
 ```json
 {
@@ -114,4 +115,27 @@ curl -X POST --location "http://127.0.0.1:8000/api/orders/" \
         ...
 ```
 
-### Localstack logs
+### Investigating with Localstack logs
+
+```
+LocalStack version: 3.0.3.dev
+LocalStack Docker container id: d24094a245fc
+LocalStack build date: 2024-01-09
+LocalStack build git hash: 17fa5ee4
+
+...
+2024-01-17T20:54:31.997  INFO --- [   asgi_gw_1] localstack.request.aws     : AWS ses.VerifyEmailIdentity => 200
+2024-01-17T20:54:32.007  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS ses.VerifyEmailIdentity => 200
+2024-01-17T20:54:32.018  INFO --- [   asgi_gw_1] localstack.request.aws     : AWS ses.SendEmail => 200
+2024-01-17T20:54:32.199  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS dynamodb.PutItem => 200
+2024-01-17T20:55:06.796  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS dynamodb.Scan => 200
+
+```
+
+### Uvicorn logs
+
+```
+uvicorn main:app --reload --port 8000
+INFO:     Uvicorn running on http://127.0.0.1:8000
+INFO:     127.0.0.1:45460 - "POST /api/orders/ HTTP/1.1" 200 OK
+```
